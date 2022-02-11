@@ -1,0 +1,64 @@
+<h4>注文履歴詳細</h4>
+
+<p>注文情報</p>
+<table>
+  <thead>
+    <tr><th>注文日</th><td><%= @order.created_at %></td></tr>
+    <tr><th>配送先</th><td><%= @order.address %></td></tr>
+    <tr>
+      <th>支払方法</th>
+      <td><% if @order.payment_method == "credit_card" %>
+       <p>クレジットカード</p>
+       <% elsif @order.payment_method == "transfer" %>
+       <p>銀行振込</p>
+       <% end %>
+       </td>
+    </tr>
+    <tr>
+      <th>ステータス</th>
+      <td> <% if @order.order_status == "wait" %>
+        <p>入金待ち</p>
+        <% elsif @order.order_status == "confirmed" %>
+        <p>確認</p>
+        <% elsif @order.order_status == "making" %>
+        <p>制作中</p>
+        <% elsif @order.order_status == "preparation" %>
+        <p>準備中</p>
+        <% elsif @order.order_status == "sent" %>
+        <p>発送済み</p>
+        <% end %>
+      </td>
+    </tr>
+  </thead>
+</table>
+
+<p>請求情報</p>
+<table>
+  <thead>
+    <tr><th>商品合計</th><td><%= @order.total_payment %></td></tr>
+    <tr><th>配送先</th><td><%= @order.address %></td></tr>
+    <tr><th>ご請求額</th><td><%= @order.total_payment+800 %></td></tr>
+  </thead>
+</table>
+
+<p>注文内容</p>
+<table>
+  <thead>
+    <tr>
+      <th>商品</th>
+      <th>単価(税込)</th>
+      <th>個数</th>
+      <th>小計</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @order.order_items.each do |order_item| %>
+    <tr>
+      <td><%= order_item.item.name %></td>
+      <td><%= (order_item.price*1.1).to_i %></td>
+      <td><%= order_item.amount %></td>
+      <td><%= (order_item.price*1.1).to_i*order_item.amount %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

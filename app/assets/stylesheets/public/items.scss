@@ -1,0 +1,22 @@
+// Place all the styles related to the public/items controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.genre-search{
+  border: solid #000 1px;
+  width: 20%;
+}
+
+.genre-search > p{
+  border-bottom: solid #000 1px;
+  text-align: center;
+}
+
+.items-index{
+  width: 80%;
+}
+
+.main{
+  display: flex;
+}

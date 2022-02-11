@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="row">
+    <h4>商品詳細</h4>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    
+    <div class="col">
+      <%= attachment_image_tag @item, :image, :fill, 250, 200, format: 'jpeg' %>
+    </div>
+    
+    <div class="col">
+      <p>商品名　<%= @item.name %></p>
+      <p>商品説明　<%= @item.introduction %></p>
+      <p>ジャンル　<%= @item.genre.name %></p>
+      <p>税込み価格　<%= @item.price %>(<%= (@item.price*1.1).to_i %>)円</p>
+      <% if @item.is_active == true %>
+        <p>販売ステータス　販売中</p>
+      <% else %>
+        <p>販売ステータス　販売停止</p>
+      <% end %>
+      
+      
+    </div>
+  </div>
+      <%= button_to "編集する", {controller: 'items', action: 'edit'}, {method: :get, class: 'btn btn-success'} %>
+</div>

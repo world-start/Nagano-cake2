@@ -1,0 +1,50 @@
+
+<h4>商品編集</h4>
+  
+<div class="form">
+ 
+    <%= form_with model: @item, url: admin_item_path(@item), local:true do |f| %>
+    <!--url: はどのコントローラーのどのアクションを動かしたいかを決める-->
+    
+      <div class="item">
+        <%= f.label :商品画像, class: "label" %>
+        <%= f.attachment_field :image, autofocus: true, autocomplete: "image", class: "form-control", style: "width: 70%" %>
+      </div>
+      
+      <div class="item">
+        <%= f.label :商品名, style: "margin-right:65px; font-size: 15px;" %>
+        <%= f.text_field :name, class: "form-control", style: "width: 70%" %>
+      </div>
+      
+      <div class="item">
+        <%= f.label :商品説明, class: "label" %>
+        <%= f.text_area :introduction, class: "form-control", style: "width: 70%" %>
+      </div>
+      
+      <div class="item">
+        <%= f.label :ジャンル, class: "label" %>
+        <%#= f.select :genre_id, ['--選択してください--', 'ケーキ', '焼き菓子', 'プリン', 'キャンディ'] %>
+        <%= f.select :genre_id, Genre.all.map {|p| [p.name, p.id]}, { :prompt => "選択してください"},{ class: "form-control", style: "width: 70%"}  %>
+      </div>
+      
+      <div class="item">
+        <%= f.label :税抜価格, class: "label" %>
+        <%= f.number_field :price, class: "form-control", style: "width: 70%" %>円
+      </div>
+      
+      <div class="item form-check form-check-inline">
+        
+        <%= f.label :販売ステータス, style: "font-size: 15px; margin: 0px 10px 0 0;" %>
+ 
+          <%= f.radio_button :is_active, true, checked: true, class: "form-check-input" %>
+          <%= f.label :is_active, '販売中', value: true, class: "form-check-label" %>
+          <%= f.radio_button :is_active, :false, class: "form-check-input" %>
+          <%= f.label :is_active, '販売停止中', value: false, class: "form-check-label" %>
+
+      </div>
+      
+      <div class="button"> <%= f.submit "変更を保存", class:'btn btn-success' %></div>
+    
+    <% end %>
+  
+</div>

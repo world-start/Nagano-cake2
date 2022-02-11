@@ -1,0 +1,96 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+ @import "bootstrap";
+ @import 'font-awesome-sprockets';
+ @import 'font-awesome';
+ 
+ 
+.link-logo{
+ color: #000;
+ border: solid #000 1px;
+ font-size: 40px;
+ padding-right: 30px;
+ padding-left: 30px;
+}
+
+.link{
+ color: #000;
+ border: solid #000 1px;
+ display: inline-block;
+ padding: 3px 3px;
+ margin: 6px 6px;
+ border-radius: 3px;
+}
+
+.link-logo:hover{
+ text-decoration: none;
+} 
+
+.link:hover{
+ text-decoration: none;
+ 
+}
+
+header{
+ border-bottom: solid #000 1px;
+ padding-bottom: 10px;
+}
+
+// body
+h4{
+ display: inline-block;
+ background-color: #eee;
+ padding: 0 20px;
+ margin: 30px 0 30px 100px;
+}
+
+table{
+ border: 1px solid #000; 
+}
+
+table th{
+ border: 1px solid #000;
+}
+
+table td{
+ border: 1px solid #000;
+}
+
+thead th{
+ background-color: #eee;
+}
+
+.form{
+ width: 40%;
+ margin: 0 auto;
+ 
+}
+
+.label{
+ margin-right: 50px;
+ font-size: 15px;
+}
+
+.item {
+ display :flex;
+ margin: 20px;
+}
+ 
+ .button {
+    width: 30%;
+    margin: 20px auto;
+
+ }

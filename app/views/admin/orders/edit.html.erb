@@ -1,0 +1,83 @@
+<h4>注文履歴詳細</h4>
+
+  <div class="order">
+    <span>購入者</span>
+    <%= link_to(admin_customer_path(@order.customer_id)) do %>
+    <%= @order.name %>
+    <% end %>
+  </div>
+  
+  <div class="order">
+    <span>注文日</span>
+    <%= @order.created_at %>
+  </div>
+  
+  <div class="customer">
+    <span>配送先</span>
+  〒<%= @order.postal_code %>
+    <%= @order.address %>
+    <%= @order.name %>
+  </div>
+  
+  <div class="customer">
+    <span>支払方法</span>
+      <% if @order.payment_method == "credit_card" %>
+       <p>クレジットカード</p>
+       <% elsif @order.payment_method == "transfer" %>
+       <p>銀行振込</p>
+       <% end %>
+  </div>
+  
+  <div class="customer">
+    <span>注文ステータス</span>
+    
+      <%= form_with model: @order, url:admin_order_path(@order), local:true do |f| %>
+        <%= f.select :order_status, [['入金待ち',:wait], ['確認',:confirmed], ['制作中',:making], ['準備中',:preparation], ['発送済み',:sent]] %>
+        <%= f.submit '更新', class: 'btn btn-primary' %>
+      <% end %>
+  </div>
+  
+  <table>
+  <thead>
+    <tr>
+      <th>商品名</th>
+      <th>単価(税込)</th>
+      <th>数量</th>
+      <th>小計</th>
+      <th>制作ステータス</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @order_items.each do |order_item| %>
+    <tr>
+      <td><%= order_item.item.name %></td>
+      <td><%= (order_item.item.price*1.1).to_i %></td>
+      <td><%= order_item.amount %></td>
+      <td><%= order_item.subtotal %></td>
+      <td></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+<table>
+  <thead>
+    <tr>
+      <th>商品合計</th>
+      <th>送料</th>
+      <th>請求金額合計</th>
+    </tr>
+    
+    
+    <tr>
+      <td><%= @total %></td>
+      <td>800円</td>
+      <td><%= @total+800 %></td>
+    </tr>
+   
+  </thead>
+</table>
+  
+  
+  
+  

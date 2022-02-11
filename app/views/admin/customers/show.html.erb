@@ -1,0 +1,61 @@
+
+  <h4>
+    <%= @customer.last_name %>
+    <%= @customer.first_name %>さんの会員詳細
+  </h4>
+
+　<div class="customer-form">
+      <div class="customer">
+        <span>会員ID</span>
+        <%= @customer.id %>
+      </div>
+      
+      <div class="customer">
+        <span>氏名</span>
+        <%= @customer.last_name %>
+        <%= @customer.first_name %>
+      </div>
+      
+      <div class="customer">
+        <span>フリガナ</span>
+        <%= @customer.last_name_kana %>
+        <%= @customer.first_name_kana %>
+      </div>
+      
+      <div class="customer">
+        <span>郵便番号</span>
+        <%= @customer.postal_code %>
+      </div>
+      
+      <div class="customer">
+        <span>住所</span>
+        <%= @customer.address %>
+      </div>
+      
+      <div class="customer">
+        <span>電話番号</span>
+        <%= @customer.telephone_number %>
+      </div>
+      
+      <div class="customer">
+        <span>メールアドレス</span>
+        <%= @customer.email %>
+      </div>
+      
+      <div class="customer">
+        <span>会員ステータス</span>
+        <% if @customer.is_active == true %>
+        <p>有効</p>
+        <% else %>
+        <p>退会</p>
+        <% end %>
+      </div>
+    <div class="buttons">
+      <div class="edit-botton">
+        <%= button_to "編集する", {controller: 'customers', action: 'edit'}, {method: :get, class: 'btn btn-success'} %>
+      </div>
+      <div class="index-botton">
+        <%= link_to "注文履歴一覧を見る", edit_admin_order_path(@customer), class: 'btn btn-primary' %>
+      </div>
+    </div>
+　</div>

@@ -1,0 +1,52 @@
+<div class="container">
+
+ 
+ 
+<!--改善の余地-->
+  <div class="row">
+  <h4 class="col-3">商品一覧</h4>
+ <div class="col">
+    <%= button_to "+", {controller: 'admin/items', action: 'new'}, {method: :get} %>
+ </div>
+  </div>
+
+
+<table rules="rows">
+  <thead>
+    <tr>
+      <th width="10%">商品ID</th>
+      <th width="30%">商品名</th>
+      <th width="15%">税抜価格</th>
+      <th width="30%">ジャンル</th>
+      <th width="15%">ステータス</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!--each文は<tr>の外に出す-->
+    <% @items.each do |item| %>
+    <tr>
+      <td><%= item.id %></td>
+      <td>
+        <%= link_to(admin_item_path(item)) do %>
+        <%= item.name %>
+        <% end %>
+      </td>
+      <td><%= item.price %>円</td>
+      <td><%= item.genre.name %></td>
+      <td>
+        <% if item.is_active == true %>
+        <p>販売中</p>
+        <% else %>
+        <p>販売停止中</p>
+        <% end %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+  </table>
+
+  <%= paginate @items %>
+
+</div>
+
+
